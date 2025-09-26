@@ -1,7 +1,8 @@
 "use client"
 
 //Read params and searchParams and based on lang and articleId show different content. use type script for types.
-import { useSearchParams, useParams } from "next/navigation";
+//import { useSearchParams, useParams } from "next/navigation";
+import { use } from "react";
 import React from "react";
 const articles = {
     "breaking-news-1": {
@@ -34,12 +35,11 @@ type ArticleSearchParams = {
     lang?: "en" | "fr";
 };
 
-const ArticlePage = () => {
-    const params = useParams() as ArticleParams;
-    const searchParams = useSearchParams();
-
-    const articleId = params.articleId;
-    const lang = (searchParams.get("lang") as ArticleSearchParams["lang"]) ?? "en";
+const ArticlePage = ({ params, searchParams }:
+    { params: Promise<ArticleParams>; searchParams: Promise<ArticleSearchParams>; }) => {
+        
+    const { articleId } = use(params);
+    const { lang = "en" } = use(searchParams);;
 
     const article = articles[articleId as keyof typeof articles];
 
