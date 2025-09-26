@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
-interface Props {
+type Props = {
     params: {
         productID: string;
     };
@@ -10,11 +10,11 @@ interface Props {
 export const generateMetadata = async (
     { params }: Props
 ): Promise<Metadata> => {
-    const { productID } = params;
+    const { productID } = await params; // to avoid browser warning 
     const title = await new Promise<string>((resolve) => {
         setTimeout(() => {
             resolve(`iPhone ${productID}`);
-        }, 100);
+        }, 5000);
     });
     return {
         title: `Product ${title} page`,
