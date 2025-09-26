@@ -1,6 +1,6 @@
 "use client"
 
-//Read params and serachparams and based on lanf and articleId show different content. use type script for types.
+//Read params and searchParams and based on lang and articleId show different content. use type script for types.
 import { useSearchParams, useParams } from "next/navigation";
 import React from "react";
 const articles = {
@@ -35,7 +35,7 @@ type ArticleSearchParams = {
 };
 
 const ArticlePage = () => {
-    const params = useParams<ArticleParams>();
+    const params = useParams() as ArticleParams;
     const searchParams = useSearchParams();
 
     const articleId = params.articleId;
