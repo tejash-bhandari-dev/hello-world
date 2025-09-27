@@ -31,8 +31,13 @@ const Product = async ({
     if (parseInt(productID) > 1000) {
         notFound();
     }
+    const title = await new Promise<string>((resolve) => {
+        setTimeout(() => {
+            resolve(`iPhone ${productID}`);
+        }, 5000);
+    });
     return (
-        <div>You are at product {productID} page.</div>
+        <div>You are at product {productID} page. Title {title}.</div>
     );
 };
 
